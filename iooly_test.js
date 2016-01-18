@@ -3,8 +3,7 @@ function multinherits() {
         return;
     }
  
-    var args = arguments;
-    var sub = args[0];
+    var sub = arguments[0];
     var constructor = sub.prototype.constructor;
     var create;
     if (!Object.create) {
@@ -18,14 +17,24 @@ function multinherits() {
     }
  
     var base;
-    for (var i = 1; i < args.length; i++) {
-        base = create(args[i].prototype);
+    var len = arguments.length;
+    var supers = [];
+    for (var i = 1; i < len; i++) {
+        supers[i - 1] = arguments[i];
+    }
+    len--;
+
+    for (var i = 0; i < len; i++) {
+        base = create(supers[i].prototype);
         for (var attr in base) {
             sub.prototype[attr] = base[attr];
         }
         delete base;
     }
     sub.prototype.constructor = constructor;
+    sub.prototype.suppers = function() {
+        return supers;
+    }
 }
 
 function old_inherits(ctor, superCtor) {
@@ -105,6 +114,4 @@ b.sayDesc();
 
 console.log(b);
 
-
-// provent chrome console print 'undefined' at the end
 "";
