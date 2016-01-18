@@ -52,7 +52,7 @@ inherits(B, A);
 new B().sayName();
 
 
-// use defineClass function
+// use defineClass function ('defineClass' is defined in define_class.js at the root of this repo)
 
 var C = defineClass(A, function(name) {
      console.log("init name: " + name);
