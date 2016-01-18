@@ -52,5 +52,20 @@ inherits(B, A);
 new B().sayName();
 
 
+// use defineClass function
 
+var C = defineClass(A, function(name) {
+     console.log("init name: " + name);
+     console.log("init this.name: " + this.name);
+     if (typeof(this.name) !== 'undefined') {
+         this.name = name;
+     }   
+});
+
+var c = new C("CCCC");
+c.sayName();
+console.log(c);
+
+
+// provent chrome console print 'undefined' at the end
 "";
