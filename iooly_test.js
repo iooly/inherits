@@ -24,8 +24,6 @@ if (typeof Object.create === 'function') {
   }
 }
 
-function old_inherits()
-
 
 function A() {
     this.name = "AAAAA";
@@ -41,6 +39,7 @@ A.fn = A.prototype = {
 };
 
 function B() { 
+    // implements object attributs from super object
     A.call(this);
     if (typeof(this.name) !== 'undefined') {
         this.name = "BBBB";
