@@ -7,7 +7,7 @@ function defineClass(superCtor, def) {
         if (Object.setPrototypeOf) {
              Object.setPrototypeOf(obj, def.prototype);
         } else {
-             obj.__proto__ = proto
+             obj.__proto__ = def.prototype;
         }
         superCtor.call(obj);
         def.apply(obj, arguments);
