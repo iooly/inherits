@@ -1,17 +1,11 @@
 // define a class with implation
 
 function defineClass(superCtor, def) {
+   var tmp = (function () {
+        superCtor.call(this);
+        def.apply(this, arguments);
+    });
     inherits(def, superCtor);
-    return function() {
-        var obj  = this;
-        // this may not work on the microsoft IE
-        if (Object.setPrototypeOf) {
-             Object.setPrototypeOf(obj, def.prototype);
-        } else {
-             obj.__proto__ = def.prototype;
-        }
-        superCtor.call(obj);
-        def.apply(obj, arguments);
-        return obj;
-    }
+    inherits(tmp, def);
+    return tmp;
 }
