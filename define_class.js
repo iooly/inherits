@@ -4,6 +4,7 @@ function defineClass(superCtor, def) {
     inherits(def, superCtor);
     return function() {
         var obj  = this;
+        // this may not work on the microsoft IE
         if (Object.setPrototypeOf) {
              Object.setPrototypeOf(obj, def.prototype);
         } else {
